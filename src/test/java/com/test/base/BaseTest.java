@@ -1,5 +1,5 @@
 package com.test.base;
-import com.eldiarioTest.factory.PlaywrightFactory;
+import com.elDiarioTest.factory.PlaywrightFactory;
 import com.microsoft.playwright.Page;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
