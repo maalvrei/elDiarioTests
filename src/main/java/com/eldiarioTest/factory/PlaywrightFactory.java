@@ -1,5 +1,6 @@
 package com.eldiarioTest.factory;
 
+import com.eldiarioTest.utils.ConfigReader;
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.BrowserType;
@@ -12,13 +13,32 @@ public class PlaywrightFactory {
 
     private static Playwright playwright;
     private static Browser browser;
+    private static ConfigReader configReader; // <-- AÑADIMOS EL LECTOR
+
 
     // Método para inicializar el navegador
     public static void initBrowser() {
+        configReader = new ConfigReader(); // <-- LO INICIALIZAMOS
         playwright = Playwright.create();
-        // Por ahora, el navegador está fijo, pero luego lo haremos configurable
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true));
-        System.out.println("Navegador Chromium iniciado.");
+
+        String browserName = configReader.getProperty("browser");
+        boolean headless = Boolean.parseBoolean(configReader.getProperty("headless"));
+
+        System.out.println("Iniciando navegador: " + browserName);
+
+        switch (browserName.toLowerCase()) {
+            case "chromium":
+                browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(headless));
+                break;
+            case "firefox":
+                browser = playwright.firefox().launch(new BrowserType.LaunchOptions().setHeadless(headless));
+                break;
+            case "webkit":
+                browser = playwright.webkit().launch(new BrowserType.LaunchOptions().setHeadless(headless));
+                break;
+            default:
+                throw new IllegalArgumentException("Navegador no soportado: " + browserName);
+        }
     }
 
     // Método para obtener una nueva página con el estado cargado
@@ -34,5 +54,9 @@ public class PlaywrightFactory {
             playwright.close();
             System.out.println("Playwright cerrado.");
         }
+    }
+
+    public static String getBaseUrl() {
+        return configReader.getProperty("baseUrl");
     }
 }

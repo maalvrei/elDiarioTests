@@ -3,6 +3,8 @@ package com.eldiarioTest.pages;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
+import com.eldiarioTest.factory.PlaywrightFactory; // <-- IMPORTAMOS LA FÁBRICA
+
 
 public class ElDiarioHomePage {
 
@@ -21,7 +23,7 @@ public class ElDiarioHomePage {
     }
 
     public void navegar() {
-        page.navigate("https://www.eldiario.es/");
+        page.navigate(PlaywrightFactory.getBaseUrl());
     }
 
     public void clicPolitica() {
