@@ -1,0 +1,38 @@
+package com.eldiarioTest.pages;
+
+import com.microsoft.playwright.Locator;
+import com.microsoft.playwright.Page;
+import com.microsoft.playwright.options.AriaRole;
+
+public class ElDiarioHomePage {
+
+    private final Page page;
+
+    // 1. Localizamos primero el contenedor del menú principal
+    private final Locator menuPrincipal;
+
+    // 2. Luego buscamos el enlace DENTRO de ese contenedor
+    private final Locator botonPolitica;
+
+    public ElDiarioHomePage(Page page) {
+        this.page = page;
+        this.menuPrincipal = page.locator("#nav-carrousel");
+        this.botonPolitica = menuPrincipal.getByRole(AriaRole.LINK, new Locator.GetByRoleOptions().setName("Política"));
+    }
+
+    public void navegar() {
+        page.navigate("https://www.eldiario.es/");
+    }
+
+    public void clicPolitica() {
+        botonPolitica.click();
+    }
+
+    public String getTitulo() {
+        return page.title();
+    }
+
+    public String getUrlActual() {
+        return page.url();
+    }
+}
