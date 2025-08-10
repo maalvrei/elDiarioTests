@@ -51,7 +51,7 @@ Al terminar, verás un nuevo archivo state.json en la carpeta de tu proyecto.
 ### Ejecución de los Tests (Uso diario)
 Una vez completada la configuración inicial, para ejecutar la suite de tests completa, sigue estos pasos.
 
-#### (Opcional) Reconstruye la imagen si has cambiado el código:
+1.  (Opcional) Reconstruye la imagen si has cambiado el código:
 Si has modificado algún archivo .java, el pom.xml o el Dockerfile, necesitarás reconstruir la imagen.
 
 ```bash
@@ -59,12 +59,12 @@ docker build -t eldiario-tests .
 ```
 2. Limpia y ejecuta los tests:
 
-2.1. Limpia ejecuciones anteriores
+  2.1 Limpia ejecuciones anteriores
 ```bash
 mvn clean
 ```
 
-2.2. Ejecuta los tests dentro del contenedor
+  2.2. Ejecuta los tests dentro del contenedor
 ```bash
 docker run --rm \
   -v "$(pwd)/target:/app/target" \
@@ -74,16 +74,15 @@ docker run --rm \
 3. Visualización de Reportes
 El contenedor de Docker crea los archivos de resultados, pero el propietario de estos es root. Para poder visualizarlos, primero debes reclamar la propiedad de la carpeta target.
 
-a) Corrige los permisos de la carpeta de resultados:
+  3.1. Corrige los permisos de la carpeta de resultados:
 
-Bash
-
+```bash
 sudo chown -R $USER:$USER target
-b) Lanza el reporte de Allure:
-
-Bash
-
+```
+  3.2. Lanza el reporte de Allure:
+```bash
 mvn allure:serve
+```
 Esto abrirá un reporte HTML interactivo en tu navegador web. Para detener el servidor del reporte, vuelve a la terminal y pulsa Ctrl + C.
 
 
