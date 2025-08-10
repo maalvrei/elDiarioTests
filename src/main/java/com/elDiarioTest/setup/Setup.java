@@ -1,5 +1,6 @@
 package com.elDiarioTest.setup;
 
+import com.microsoft.playwright.*;
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.BrowserType;
@@ -13,7 +14,7 @@ public class Setup {
 
     public static void main(String[] args) {
         try (Playwright playwright = Playwright.create()) {
-            Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+            Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true));
             BrowserContext context = browser.newContext();
             Page page = context.newPage();
             page.navigate("https://www.eldiario.es/");
