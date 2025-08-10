@@ -4,9 +4,9 @@ Este proyecto contiene una suite de tests de UI automatizados utilizando un fram
 ## Prerrequisitos
 Para poder ejecutar este proyecto, solo necesitas tener instalado lo siguiente en tu máquina (preferiblemente Ubuntu o un sistema Linux similar):
 
-Git: Para clonar el repositorio.
+1. Git: Para clonar el repositorio.
 
-Docker Engine: Para construir y ejecutar el entorno de pruebas aislado.
+2. Docker Engine: Para construir y ejecutar el entorno de pruebas aislado.
 
 Nota: Asegúrate de que tu usuario pertenece al grupo docker para no necesitar sudo. Si no es así, ejecútalo una vez:
 
@@ -14,7 +14,7 @@ sudo usermod -aG docker ${USER}
 
 ...y después cierra sesión y vuelve a iniciarla.
 
-xdg-utils (Opcional): Para que los reportes de Allure se abran automáticamente en el navegador.
+3. xdg-utils (Opcional): Para que los reportes de Allure se abran automáticamente en el navegador.
 
 Bash
 
