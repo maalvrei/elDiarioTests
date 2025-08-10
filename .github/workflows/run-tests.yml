@@ -35,9 +35,9 @@ jobs:
 
     # Paso 4: Ejecutar el script de Setup para crear el state.json
     - name: 4. Generar el archivo state.json
-      run: docker run --rm -v "$(pwd):/app" eldiario-tests mvn compile exec:java -Dexec.mainClass="com.elDiarioTest.setup.Setup"
+      run: docker run --rm -u $(id -u):$(id -g) -v "$(pwd):/app" eldiario-tests mvn compile exec:java -Dexec.mainClass="com.elDiarioTest.setup.Setup"
 
-    # Paso 5: Ejecutar los tests
+    # Paso 5: Ejecutar los tests (este ya no debería fallar)
     - name: 5. Limpiar y ejecutar los tests en Docker
       run: |
         mvn clean
