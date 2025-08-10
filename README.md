@@ -1,103 +1,116 @@
 # Proyecto de Tests Automatizados con Playwright y Java
-Este proyecto contiene una suite de tests de UI automatizados utilizando un framework profesional basado en Playwright, Java, Maven y Docker. Incluye un sistema de reportes interactivos con Allure.
 
-## Prerrequisitos
-Para poder ejecutar este proyecto, solo necesitas tener instalado lo siguiente en tu máquina (preferiblemente Ubuntu o un sistema Linux similar):
+Suite de pruebas de UI automatizadas utilizando un framework profesional basado en **Playwright**, **Java**, **Maven** y **Docker**.  
+Incluye reportes interactivos con **Allure**.
 
-1. Git: Para clonar el repositorio.
+---
 
-2. Docker Engine: Para construir y ejecutar el entorno de pruebas aislado.
+## 📦 Prerrequisitos
 
-Nota: Asegúrate de que tu usuario pertenece al grupo docker para no necesitar sudo. Si no es así, ejecútalo una vez:
+Para ejecutar este proyecto necesitas tener instalado en tu máquina (preferiblemente Ubuntu o un sistema Linux similar):
 
-```bash
-sudo usermod -aG docker ${USER}
-```
+1. **Git** – Para clonar el repositorio.
+2. **Docker Engine** – Para construir y ejecutar el entorno de pruebas aislado.  
+   Asegúrate de que tu usuario pertenece al grupo `docker` para no necesitar `sudo`:
+   ```bash
+   sudo usermod -aG docker ${USER}
+   ```
+   Cierra sesión y vuelve a iniciarla después.
+3. **xdg-utils** *(opcional)* – Para que los reportes de Allure se abran automáticamente:
+   ```bash
+   sudo apt install -y xdg-utils
+   ```
 
-... y después cierra sesión y vuelve a iniciarla.
+> 💡 **Nota:** No es necesario tener Java o Maven instalados localmente.
 
-3. xdg-utils (Opcional): Para que los reportes de Allure se abran automáticamente en el navegador.
+---
 
-```bash
-sudo apt install -y xdg-utils
-```
+## 🚀 Guía de Uso
 
-No es necesario tener Java o Maven instalados localmente.
+### 1️⃣ Configuración Inicial (solo la primera vez)
 
-## Guía de Uso
+Este proceso crea el archivo `state.json` necesario para gestionar el banner de cookies del sitio web.
 
-### Configuración Inicial (Solo la primera vez)
+1. Clonar el repositorio:
 
-Este proceso de un solo paso prepara tu entorno local, generando el archivo state.json necesario para gestionar el banner de cookies del sitio web.
+   ```bash
+   git clone https://github.com/maalvrei/elDiarioTests.git
+   cd elDiarioTests
+   ```
 
-1. Clona el repositorio:
+2. Construir la imagen de Docker:
 
-```bash
-git clone https://github.com/maalvrei/elDiarioTests.git
-```
+   ```bash
+   docker build -t eldiario-tests .
+   ```
 
-```bash
-cd elDiarioTests
-```
+3. Ejecutar el script de *Setup* para generar `state.json`:
 
-2. Construye la imagen de Docker:
+   ```bash
+   docker run --rm -v "$(pwd):/app" eldiario-tests mvn compile exec:java -Dexec.mainClass="com.elDiarioTest.setup.Setup"
+   ```
 
-```bash
-docker build -t eldiario-tests .
-```
+   Al terminar, verás un nuevo archivo `state.json` en la carpeta del proyecto.
 
-3. Ejecuta el script de Setup para crear state.json:
-Este comando ejecutará la clase Setup dentro de un contenedor para crear el archivo state.json en tu máquina.
+---
 
-```bash
-docker run --rm -v "$(pwd):/app" eldiario-tests mvn compile exec:java -Dexec.mainClass="com.elDiarioTest.setup.Setup"
-```
+### 2️⃣ Ejecución de los Tests (uso diario)
 
-Al terminar, verás un nuevo archivo state.json en la carpeta de tu proyecto.
-
-### Ejecución de los Tests (Uso diario)
-
-Una vez completada la configuración inicial, para ejecutar la suite de tests completa, sigue estos pasos.
-
-1.  (Opcional) Reconstruye la imagen si has cambiado el código:
-
-Si has modificado algún archivo .java, el pom.xml o el Dockerfile, necesitarás reconstruir la imagen.
+#### (Opcional) Reconstruir la imagen si hay cambios en el código:
 
 ```bash
 docker build -t eldiario-tests .
 ```
 
-2. Limpia y ejecuta los tests:
-   
-    2.1 Limpia ejecuciones anteriores
-   
+#### 2.1 Limpiar ejecuciones anteriores:
+
 ```bash
 mvn clean
 ```
 
-    2.2. Ejecuta los tests dentro del contenedor
-    
+#### 2.2 Ejecutar los tests dentro del contenedor:
+
 ```bash
-docker run --rm \
-  -v "$(pwd)/target:/app/target" \
-  -v "$(pwd)/screenshots:/app/screenshots" \
-  eldiario-tests
+docker run --rm   -v "$(pwd)/target:/app/target"   -v "$(pwd)/screenshots:/app/screenshots"   eldiario-tests
 ```
 
-3. Visualización de Reportes
-   
-El contenedor de Docker crea los archivos de resultados, pero el propietario de estos es root. Para poder visualizarlos, primero debes reclamar la propiedad de la carpeta target.
+---
 
-    3.1. Corrige los permisos de la carpeta de resultados:
-    
+### 3️⃣ Visualización de Reportes
+
+Los resultados generados por Docker tienen como propietario al usuario `root`.  
+Para poder abrirlos con Allure, primero debes cambiar los permisos:
+
+#### 3.1 Corregir permisos:
+
 ```bash
 sudo chown -R $USER:$USER target
 ```
 
-    3.2. Lanza el reporte de Allure: 
-    
+#### 3.2 Abrir el reporte Allure:
+
 ```bash
 mvn allure:serve
 ```
 
-Esto abrirá un reporte HTML interactivo en tu navegador web. Para detener el servidor del reporte, vuelve a la terminal y pulsa Ctrl + C.
+Esto abrirá un reporte HTML interactivo en tu navegador.  
+Para detener el servidor, vuelve a la terminal y pulsa `Ctrl + C`.
+
+---
+
+## 🗂 Estructura del Proyecto
+
+```
+elDiarioTests/
+├── pom.xml               # Configuración Maven
+├── Dockerfile            # Imagen Docker del entorno de tests
+├── src/                  # Código fuente de los tests
+├── target/               # Resultados y artefactos de ejecución
+└── screenshots/          # Capturas de pantalla de fallos
+```
+
+---
+
+## 📜 Licencia
+
+Este proyecto se distribuye bajo la licencia MIT.
