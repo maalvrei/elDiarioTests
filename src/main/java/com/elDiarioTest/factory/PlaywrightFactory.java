@@ -43,8 +43,7 @@ public class PlaywrightFactory {
 
     // Método para obtener una nueva página con el estado cargado
     public static Page getPage() {
-        BrowserContext context = browser.newContext(new Browser.NewContextOptions()
-                .setStorageStatePath(Paths.get("state.json")));
+        BrowserContext context = browser.newContext();
         return context.newPage();
     }
 
