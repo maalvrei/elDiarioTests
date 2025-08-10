@@ -1,4 +1,4 @@
-Proyecto de Tests Automatizados con Playwright y Java
+# Proyecto de Tests Automatizados con Playwright y Java
 Este proyecto contiene una suite de tests de UI automatizados utilizando un framework profesional basado en Playwright, Java, Maven y Docker. Incluye un sistema de reportes interactivos con Allure.
 
 Prerrequisitos
