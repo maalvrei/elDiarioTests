@@ -63,7 +63,6 @@ docker build -t eldiario-tests .
 ```bash
 mvn clean
 ```
-
     2.2. Ejecuta los tests dentro del contenedor
 ```bash
 docker run --rm \
