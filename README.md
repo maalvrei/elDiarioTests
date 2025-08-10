@@ -27,7 +27,7 @@ No es necesario tener Java o Maven instalados localmente.
 1. Configuración Inicial (Solo la primera vez)
 Este proceso de un solo paso prepara tu entorno local, generando el archivo state.json necesario para gestionar el banner de cookies del sitio web.
 
-a) Clona el repositorio:
+1. Clona el repositorio:
 
 ```bash
 git clone https://github.com/maalvrei/elDiarioTests.git
@@ -35,7 +35,7 @@ git clone https://github.com/maalvrei/elDiarioTests.git
 ```bash
 cd elDiarioTests
 ```
-b) Construye la imagen de Docker:
+2. Construye la imagen de Docker:
 
 Bash
 
