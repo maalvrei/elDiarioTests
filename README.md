@@ -12,6 +12,7 @@ Nota: Asegúrate de que tu usuario pertenece al grupo docker para no necesitar s
 
 ```bash
 sudo usermod -aG docker ${USER}
+```
 
 ...y después cierra sesión y vuelve a iniciarla.
 
