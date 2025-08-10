@@ -59,12 +59,12 @@ docker build -t eldiario-tests .
 ```
 2. Limpia y ejecuta los tests:
 
-  2.1 Limpia ejecuciones anteriores
+    2.1 Limpia ejecuciones anteriores
 ```bash
 mvn clean
 ```
 
-  2.2. Ejecuta los tests dentro del contenedor
+    2.2. Ejecuta los tests dentro del contenedor
 ```bash
 docker run --rm \
   -v "$(pwd)/target:/app/target" \
@@ -74,12 +74,12 @@ docker run --rm \
 3. Visualización de Reportes
 El contenedor de Docker crea los archivos de resultados, pero el propietario de estos es root. Para poder visualizarlos, primero debes reclamar la propiedad de la carpeta target.
 
-  3.1. Corrige los permisos de la carpeta de resultados:
+    3.1. Corrige los permisos de la carpeta de resultados:
 
 ```bash
 sudo chown -R $USER:$USER target
 ```
-  3.2. Lanza el reporte de Allure:
+    3.2. Lanza el reporte de Allure:
 ```bash
 mvn allure:serve
 ```
