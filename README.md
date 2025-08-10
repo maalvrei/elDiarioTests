@@ -51,7 +51,7 @@ Al terminar, verás un nuevo archivo state.json en la carpeta de tu proyecto.
 ### Ejecución de los Tests (Uso diario)
 Una vez completada la configuración inicial, para ejecutar la suite de tests completa, sigue estos pasos.
 
-1. (Opcional) Reconstruye la imagen si has cambiado el código:
+#### (Opcional) Reconstruye la imagen si has cambiado el código:
 Si has modificado algún archivo .java, el pom.xml o el Dockerfile, necesitarás reconstruir la imagen.
 
 ```bash
