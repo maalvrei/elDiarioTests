@@ -14,13 +14,13 @@ Nota: Asegúrate de que tu usuario pertenece al grupo docker para no necesitar s
 sudo usermod -aG docker ${USER}
 ```
 
-...y después cierra sesión y vuelve a iniciarla.
+... y después cierra sesión y vuelve a iniciarla.
 
 3. xdg-utils (Opcional): Para que los reportes de Allure se abran automáticamente en el navegador.
 
-Bash
-
+```bash
 sudo apt install -y xdg-utils
+```
 No es necesario tener Java o Maven instalados localmente.
 
 Guía de Uso
