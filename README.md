@@ -24,7 +24,7 @@ sudo apt install -y xdg-utils
 No es necesario tener Java o Maven instalados localmente.
 
 ## Guía de Uso
-1. Configuración Inicial (Solo la primera vez)
+### Configuración Inicial (Solo la primera vez)
 Este proceso de un solo paso prepara tu entorno local, generando el archivo state.json necesario para gestionar el banner de cookies del sitio web.
 
 1. Clona el repositorio:
@@ -37,27 +37,27 @@ cd elDiarioTests
 ```
 2. Construye la imagen de Docker:
 
-Bash
-
+```bash
 docker build -t eldiario-tests .
-c) Ejecuta el script de Setup para crear state.json:
+```
+3. Ejecuta el script de Setup para crear state.json:
 Este comando ejecutará la clase Setup dentro de un contenedor para crear el archivo state.json en tu máquina.
 
-Bash
-
+```bash
 docker run --rm -v "$(pwd):/app" eldiario-tests mvn compile exec:java -Dexec.mainClass="com.elDiarioTest.setup.Setup"
+```
 Al terminar, verás un nuevo archivo state.json en la carpeta de tu proyecto.
 
-2. Ejecución de los Tests (Uso diario)
+### Ejecución de los Tests (Uso diario)
 Una vez completada la configuración inicial, para ejecutar la suite de tests completa, sigue estos pasos.
 
-a) (Opcional) Reconstruye la imagen si has cambiado el código:
+1. (Opcional) Reconstruye la imagen si has cambiado el código:
 Si has modificado algún archivo .java, el pom.xml o el Dockerfile, necesitarás reconstruir la imagen.
 
-Bash
-
+```bash
 docker build -t eldiario-tests .
-b) Limpia y ejecuta los tests:
+```
+2. Limpia y ejecuta los tests:
 
 Bash
 
