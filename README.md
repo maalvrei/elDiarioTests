@@ -10,7 +10,8 @@ Para poder ejecutar este proyecto, solo necesitas tener instalado lo siguiente e
 
 Nota: Asegúrate de que tu usuario pertenece al grupo docker para no necesitar sudo. Si no es así, ejecútalo una vez:
 
-'''bash sudo usermod -aG docker ${USER}
+```bash
+sudo usermod -aG docker ${USER}
 
 ...y después cierra sesión y vuelve a iniciarla.
 
