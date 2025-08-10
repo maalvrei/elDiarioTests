@@ -23,16 +23,18 @@ sudo apt install -y xdg-utils
 ```
 No es necesario tener Java o Maven instalados localmente.
 
-Guía de Uso
+## Guía de Uso
 1. Configuración Inicial (Solo la primera vez)
 Este proceso de un solo paso prepara tu entorno local, generando el archivo state.json necesario para gestionar el banner de cookies del sitio web.
 
 a) Clona el repositorio:
 
-Bash
-
+```bash
 git clone https://github.com/maalvrei/elDiarioTests.git
+```
+```bash
 cd elDiarioTests
+```
 b) Construye la imagen de Docker:
 
 Bash
