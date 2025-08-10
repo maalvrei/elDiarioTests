@@ -63,7 +63,9 @@ docker build -t eldiario-tests .
 ```bash
 mvn clean
 ```
+
     2.2. Ejecuta los tests dentro del contenedor
+    
 ```bash
 docker run --rm \
   -v "$(pwd)/target:/app/target" \
@@ -78,10 +80,13 @@ El contenedor de Docker crea los archivos de resultados, pero el propietario de 
 ```bash
 sudo chown -R $USER:$USER target
 ```
+
     3.2. Lanza el reporte de Allure:
+    
 ```bash
 mvn allure:serve
 ```
+
 Esto abrirá un reporte HTML interactivo en tu navegador web. Para detener el servidor del reporte, vuelve a la terminal y pulsa Ctrl + C.
 
 
