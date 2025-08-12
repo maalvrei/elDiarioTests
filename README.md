@@ -10,13 +10,15 @@ Incluye reportes interactivos con **Allure**.
 Para ejecutar este proyecto necesitas tener instalado en tu máquina (preferiblemente Ubuntu o un sistema Linux similar):
 
 1. **Git** – Para clonar el repositorio.
-2. **Docker Engine** – Para construir y ejecutar el entorno de pruebas aislado.  
+2. **Docker Engine** – Para construir y ejecutar el entorno de pruebas aislado.
+   
    Asegúrate de que tu usuario pertenece al grupo `docker` para no necesitar `sudo`:
+   
    ```bash
    sudo usermod -aG docker ${USER}
    ```
    Cierra sesión y vuelve a iniciarla después.
-3. **xdg-utils** *(opcional)* – Para que los reportes de Allure se abran automáticamente:
+4. **xdg-utils** *(opcional)* – Para que los reportes de Allure se abran automáticamente:
    ```bash
    sudo apt install -y xdg-utils
    ```
