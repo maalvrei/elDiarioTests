@@ -10,26 +10,21 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 
-@Feature("Navegación del Home") // Característica principal que se prueba
-public class PrimerTest extends BaseTest {
+@Feature("Navegación desde el home hasta la página de economía")
+public class EconomiaTest extends BaseTest {
 
-    ElDiarioHomePage homePage; // <-- Usamos la clase correcta
+    ElDiarioHomePage homePage;
 
     @BeforeEach
-    void setupHomePage() {
-        homePage = new ElDiarioHomePage(page); // 'page' ya está inicializada por BaseTest
-    }
+    void setupHomePage() { homePage = new ElDiarioHomePage(page); }
 
     @Step("{0}")
-    public void step(String stepName) {
-        // Este método está vacío a propósito. Allure usa la anotación @Step
-        // para registrar el texto que le pasamos como un paso en el reporte.
-    }
+    public void step(String stepName) { }
 
     @Test
-    @Story("Navegación a secciones") // Una "historia de usuario" o caso de uso
-    @Description("Este test verifica que al hacer clic en 'Política', el usuario es redirigido a la URL correcta.")
-    void alHacerClicEnElEnlaceDePolitica_deberiaNavegarALaSeccionCorrecta() {
+    @Story("Navegación a economía")
+    @Description("Este test verifica que al hacer clic en 'Economía', el usuario es redirigido a la URL correcta.")
+    void alHacerClicEnElEnlaceDeEconomia_deberiaNavegarALaSeccionCorrecta() {
         step("Paso 1: Navegar a la página principal y aceptar cookies");
         homePage.navegar();
 
@@ -38,12 +33,12 @@ public class PrimerTest extends BaseTest {
         assertEquals(expectedTitle, homePage.getTitulo());
 
         step("Paso 3: Hacer clic en la sección 'Política'");
-        homePage.clicPolitica();
+        homePage.clicEconomia();
 
         step("Paso 4: Verificar que la URL es la correcta");
-        assertTrue(homePage.getUrlActual().contains("politica"));
+        assertTrue(homePage.getUrlActual().contains("economia"));
 
         step("Paso 5: Tomar captura de pantalla final");
-        page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get("screenshots/resultado_eldiario_politica.png")));
+        page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get("screenshots/resultado_eldiario_economia.png")));
     }
 }

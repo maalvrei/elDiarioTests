@@ -9,16 +9,14 @@ import com.elDiarioTest.factory.PlaywrightFactory; // <-- IMPORTAMOS LA FÁBRICA
 public class ElDiarioHomePage {
 
     private final Page page;
-
-    // 1. Localizamos primero el contenedor del menú principal
     private final Locator menuPrincipal;
-
-    // 2. Luego buscamos el enlace DENTRO de ese contenedor
     private final Locator botonPolitica;
+    private final Locator botonEconomia;
 
     public ElDiarioHomePage(Page page) {
         this.page = page;
         this.menuPrincipal = page.locator("#nav-carrousel");
+        this.botonEconomia = menuPrincipal.getByRole(AriaRole.LINK, new Locator.GetByRoleOptions().setName("Economía"));;
         this.botonPolitica = menuPrincipal.getByRole(AriaRole.LINK, new Locator.GetByRoleOptions().setName("Política"));
     }
 
@@ -28,6 +26,10 @@ public class ElDiarioHomePage {
 
     public void clicPolitica() {
         botonPolitica.click();
+    }
+
+    public void clicEconomia() {
+        botonEconomia.click();
     }
 
     public String getTitulo() {

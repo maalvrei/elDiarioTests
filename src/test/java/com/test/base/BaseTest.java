@@ -25,13 +25,10 @@ public class BaseTest {
     @BeforeEach
     public void setupTest() {
         page = PlaywrightFactory.getPage();
-        // NAVEGAMOS Y ACEPTAMOS COOKIES ANTES DE CADA TEST
         page.navigate(PlaywrightFactory.getBaseUrl());
         handleCookies();
     }
 
-    // MÉTODO PRIVADO PARA GESTIONAR LAS COOKIES DE FORMA ROBUSTA
-    // (Usando la misma lógica que tu Setup.java funcional)
     private void handleCookies() {
         try {
             // Localizamos el botón de aceptar cookies directamente por su ID.
