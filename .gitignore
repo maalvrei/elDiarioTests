@@ -40,4 +40,3 @@ build/
 ### Playwright & Test Artifacts ###
 screenshots/
 playwright-report/
-state.json

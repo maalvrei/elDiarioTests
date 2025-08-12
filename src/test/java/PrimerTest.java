@@ -23,7 +23,7 @@ public class PrimerTest extends BaseTest {
     @Step("{0}")
     public void step(String stepName) {
         // Este método está vacío a propósito. Allure usa la anotación @Step
-        // para registrar el texto que le pasas como un paso en el reporte.
+        // para registrar el texto que le pasamos como un paso en el reporte.
     }
 
     @Test
