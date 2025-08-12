@@ -44,14 +44,6 @@ Este proceso crea el archivo `state.json` necesario para gestionar el banner de 
    docker build -t eldiario-tests .
    ```
 
-3. Ejecutar el script de *Setup* para generar `state.json`:
-
-   ```bash
-   docker run --rm -v "$(pwd):/app" eldiario-tests mvn compile exec:java -Dexec.mainClass="com.elDiarioTest.setup.Setup"
-   ```
-
-   Al terminar, verás un nuevo archivo `state.json` en la carpeta del proyecto.
-
 ---
 
 ### 2️⃣ Ejecución de los Tests (uso diario)
